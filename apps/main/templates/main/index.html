@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Calculate Significance</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'main/js/index.js' %}"></script>
+  </head>
+  <body>
+    <header>
+      <div class="row">
+        <div class="col-md-4">
+          <img id="logo" src="./../static/main/image/logo.jpg" alt="logo">
+        </div>
+        <div class="col-md-8">
+          <h6>+1 (844) 822 8378 | <a href="#">Contact Us</a> | <a href="#"> Log In</a></h6>
+          <nav class="navbar navbar-expand-lg navbar-light" style="background-color:white">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#">PRODUCT</a>
+                <a class="nav-item nav-link" href="#">PRICING</a>
+                <a class="nav-item nav-link" href="#">SERVICES</a>
+                <a class="nav-item nav-link active" href="#">RESOURCES<span class="sr-only">(current)</span></a>
+                <a href="#" class="btn btn-outline-primary">FREE TRIAL</a>
+                <a href="#" class="btn btn-success">REQUEST A DEMO</a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="black-nav">
+        <nav id="black_nav">
+          <div class="black_nav_left">
+            <a href="#">Resources</a>
+          </div>
+          <div class="black_nav_right">
+            <a href="#">EBOOK</a>
+            <a href="#">WEBNIARS</a>
+            <a href="#">CASE STUDIES</a>
+            <a href="#">BLOG</a>
+            <a href="#">KNOWLEDGE BASE</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <img id="banner" src="./../static/main/image/banner_1.jpeg" alt="Banner">
+      <div class="container">
+        <div class="question">
+          <h3>Are your result significant?</h3>
+        </div>
+        <form class="" action="/process" method="post">
+          {% csrf_token %}
+          <div class="input">
+            <div class="row">
+              <div class="col-4"></div>
+              <div class="col-4 with_color">Control</div>
+              <div class="col-4 with_color">Variation</div>
+            </div>
+              <div class="row">
+                <div class="col-md-4">Number of Visitors</div>
+                <div class="col-md-4 with_color">
+                  <input id="vistor1" type="number" name="" placeholder="visitor_control">
+                </div>
+                <div class="col-md-4 with_color">
+                  <input id="vistor2" type="number" name="" placeholder="visitor_variation">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-4 with_color with_color">Control</div>
+                <div class="col-4 with_color with_color">Variation</div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">Number of Conversions</div>
+                <div class="col-md-4 with_color">
+                  <input id="converstion1" type="number" name="" value="">
+                </div>
+                <div class="col-md-4 with_color">
+                  <input id="conversion2" type="number" name="" value="">
+                </div>
+              </div>
+            </div>
+
+            <div class="submit">
+              <button class="btn btn-primary btn-lg">Calculate Significance</button>
+            </div>
+          </form>
+      </div>
+      <div class="result">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="top">
+                <h3>P-Value</h3>
+                <h5>(Range from 0-1)</h5>
+              </div>
+              <div class="bottom">
+                <h4>The Result</h4>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="top">
+                <h3>Significance</h3>
+              </div>
+              <div class="bottom">
+                <h4>The Result</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo">
+        <h4>SCHEDULE A PERSONALIZED DEMO</h4>
+        <h6>Get in touch with us for a detailed walk-through of VWO.</h6>
+        <a class="btn btn-primary btn-lg" href="#">REQUEST A DEMO</a>
+      </div>
+    </main>
+    <footer style="height:300px;background-color:#1D212C">
+
+    </footer>
+  </body>
+</html>
