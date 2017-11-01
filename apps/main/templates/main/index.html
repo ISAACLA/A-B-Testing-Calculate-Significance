@@ -67,10 +67,10 @@
               <div class="row">
                 <div class="col-md-4">Number of Visitors</div>
                 <div class="col-md-4 with_color">
-                  <input id="vistor1" type="number" name="" placeholder="visitor_control">
+                  <input id="vistor1" type="number" name="vister1" value='400'>
                 </div>
                 <div class="col-md-4 with_color">
-                  <input id="vistor2" type="number" name="" placeholder="visitor_variation">
+                  <input id="vistor2" type="number" name="vister2" value='380'>
                 </div>
               </div>
               <div class="row">
@@ -81,19 +81,20 @@
               <div class="row">
                 <div class="col-md-4">Number of Conversions</div>
                 <div class="col-md-4 with_color">
-                  <input id="converstion1" type="number" name="" value="">
+                  <input id="convert1" type="number" name="convert1" value='250'>
                 </div>
                 <div class="col-md-4 with_color">
-                  <input id="conversion2" type="number" name="" value="">
+                  <input id="convert2" type="number" name="convert2" value='220'>
                 </div>
               </div>
             </div>
 
             <div class="submit">
-              <button class="btn btn-primary btn-lg">Calculate Significance</button>
+              <button id="click" class="btn btn-primary btn-lg">Calculate Significance</button>
             </div>
           </form>
       </div>
+
       <div class="result">
         <div class="container">
           <div class="row">
@@ -103,7 +104,11 @@
                 <h5>(Range from 0-1)</h5>
               </div>
               <div class="bottom">
-                <h4>The Result</h4>
+                {% if p %}
+                  <h4>{ p }</h4>
+                {% else %}
+                  <h4>The Result</h4>
+                {% endif %}
               </div>
             </div>
             <div class="col-md-6">
@@ -126,5 +131,6 @@
     <footer style="height:300px;background-color:#1D212C">
 
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </body>
 </html>
