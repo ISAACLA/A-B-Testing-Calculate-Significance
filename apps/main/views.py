@@ -34,8 +34,14 @@ def index(request):
 
         p_value = significance (vister1, convert1, vister2, convert2)
 
+        if p_value < 0.05:
+            confidence = True
+        else:
+            confidence = False
+
         context = {
-          'p':p_value
+          'p': "%.5f" % p_value,
+          'confidence':confidence
         }
 
         # return render(request, 'main/index.html', context)

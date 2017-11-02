@@ -71,10 +71,10 @@
               <div class="row">
                 <div class="col-md-4">Number of Visitors</div>
                 <div class="col-md-4 with_color">
-                  <input id="vistor1" type="number" name="vister1" value='400'>
+                  <input id="vistor1" type="number" name="vister1">
                 </div>
                 <div class="col-md-4 with_color">
-                  <input id="vistor2" type="number" name="vister2" value='380'>
+                  <input id="vistor2" type="number" name="vister2">
                 </div>
               </div>
               <div class="row">
@@ -85,10 +85,10 @@
               <div class="row">
                 <div class="col-md-4">Number of Conversions</div>
                 <div class="col-md-4 with_color">
-                  <input id="convert1" type="number" name="convert1" value='250'>
+                  <input id="convert1" type="number" name="convert1">
                 </div>
                 <div class="col-md-4 with_color">
-                  <input id="convert2" type="number" name="convert2" value='220'>
+                  <input id="convert2" type="number" name="convert2">
                 </div>
               </div>
             </div>
@@ -110,8 +110,7 @@
                 <h5>(Range from 0-1)</h5>
               </div>
               <div class="bottom">
-                  <!-- <h4 id="p_value">{{ p }}</h4> -->
-                  <h4><span id="pvalue"></span></h4>
+                  <h4 id="pvalue"></h4>
               </div>
             </div>
             <div class="col-md-6">
@@ -119,7 +118,7 @@
                 <h3>Significance</h3>
               </div>
               <div class="bottom">
-                <h4>The Result</h4>
+                <h4 id="significance"></h4>
               </div>
             </div>
           </div>
@@ -147,7 +146,12 @@
             data: $(this).serialize(),
             success: function(data){
               console.log(data)
-              $('#pvalue').text(data.p)
+              $('#pvalue').text(data.p);
+              if (data.confidence){
+                $('#significance').text('YES')
+              }else{
+                $('#significance').text('No')
+              }
             }
           })
         })
