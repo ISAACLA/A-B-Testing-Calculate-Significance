@@ -6,7 +6,9 @@
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
-    <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="{% static 'main/js/bootstrap.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'main/js/index.js' %}"></script>
   </head>
@@ -51,12 +53,14 @@
       </div>
     </header>
     <main>
-      <img id="banner" src="./../static/main/image/banner_1.jpeg" alt="Banner">
+      {% block content %}
+      <img id="banner" src="./../static/main/image/thebanner.jpeg" alt="Banner">
       <div class="container">
         <div class="question">
           <h3>Are your result significant?</h3>
         </div>
-        <form class="" action="/process" method="post">
+        <!-- <form id="theform" action="/process" method="post"> -->
+        <form id="theform" action="/" method="post">
           {% csrf_token %}
           <div class="input">
             <div class="row">
@@ -90,12 +94,14 @@
             </div>
 
             <div class="submit">
-              <button id="click" class="btn btn-primary btn-lg">Calculate Significance</button>
+              <!-- <button id="submit" class="btn btn-primary btn-lg" data-toggle="collapse" data-target="#result">Calculate Significance</button> -->
+              <button id="submit" class="btn btn-primary btn-lg">Calculate Significance</button>
             </div>
           </form>
       </div>
 
-      <div class="result">
+      <!-- <div id="result" class="collapse result"> -->
+      <div id="result" class="result">
         <div class="container">
           <div class="row">
             <div class="col-md-6">
@@ -104,11 +110,8 @@
                 <h5>(Range from 0-1)</h5>
               </div>
               <div class="bottom">
-                {% if p %}
-                  <h4>{ p }</h4>
-                {% else %}
-                  <h4>The Result</h4>
-                {% endif %}
+                  <!-- <h4 id="p_value">{{ p }}</h4> -->
+                  <h4><span id="pvalue"></span></h4>
               </div>
             </div>
             <div class="col-md-6">
@@ -127,10 +130,45 @@
         <h6>Get in touch with us for a detailed walk-through of VWO.</h6>
         <a class="btn btn-primary btn-lg" href="#">REQUEST A DEMO</a>
       </div>
+      {% endblock %}
     </main>
     <footer style="height:300px;background-color:#1D212C">
 
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% block javascript %}
+      <script type="text/javascript">
+        $('form').submit(function(e){
+          e.preventDefault();
+          console.log('Form submit but no HTTP request sent to server')
+          $.ajax('/', {
+            // url: ('/process'),
+            method: "post",
+            // dataType: "json",
+            data: $(this).serialize(),
+            success: function(data){
+              console.log(data)
+              $('#pvalue').text(data.p)
+            }
+          })
+        })
+
+        // function successRequest(data){
+        //   console.log(data);
+        //   $('#pvalue').text(data.p)
+        // }
+        //
+        // $('#submit').click(function(e){
+        //   e.preventDefault();
+        //   $.ajax('/',{
+        //   // $.ajax({
+        //     type: 'POST',
+        //     data: $('form#theform').serialize(),
+        //     success: successRequest,
+        //
+        //   })
+        // })
+
+      </script>
+    {% endblock %}
   </body>
 </html>

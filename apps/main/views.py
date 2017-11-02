@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from scipy.stats import norm
+from django.http import JsonResponse, HttpResponseBadRequest
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
-    return render(request, 'main/index.html')
+    if request.method == "GET":
+        return render(request, 'main/index.html')
+    #
+    elif request.method == "POST":
+# def process(request):
+    # if request.method == 'POST':
 
-# def tryout(request):
-#     return render(request, 'main/try.html')
-
-def process(request):
-    if request.method == 'POST':
         vister1 = float(request.POST['vister1'])
         vister2 = float(request.POST['vister2'])
         convert1 = float(request.POST['convert1'])
@@ -29,10 +31,20 @@ def process(request):
             denominator = (se_one ** 2 + se_two ** 2) ** 0.5
             return norm.sf(abs(numberator / denominator))
 
-        p = significance (vister1, convert1, vister2, convert2)
+
+        p_value = significance (vister1, convert1, vister2, convert2)
+
         context = {
-            'p': p
+          'p':p_value
         }
 
-        # return render(request, 'main/try.html', context)
-        return redirect ('/', context)
+        # return render(request, 'main/index.html', context)
+        return JsonResponse(context)
+
+
+    else:
+        return HttpResponseBadRequest()
+
+
+
+# need to use ajax to send the data

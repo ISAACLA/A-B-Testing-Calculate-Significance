@@ -1,6 +1,7 @@
-$(document).ready(function(){
-  $('#click').click(function(){
-    // $('.result').css('display','initial')
-    $('.result').toggle('slow')
-  })
+$(document).ready(function(data){
+  // $('#click').click(function(){
+  //
+  // })
+
+  $('#p_value').text(data.p)
 })
